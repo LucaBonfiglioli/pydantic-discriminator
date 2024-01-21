@@ -1,0 +1,28 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pydantic-discriminator"
+version = "0.1.0"
+dependencies = ["pydantic>=1.10,<3.0", "packaging"]
+requires-python = ">=3.8"
+authors = [{ name = "Luca Bonfiglioli", email = "luca.bonfiglioli@gmail.com" }]
+maintainers = [
+    { name = "Luca Bonfiglioli", email = "luca.bonfiglioli@gmail.com" },
+]
+description = "Pydantic discriminators for polymorphic models"
+readme = "README.md"
+license = { file = "LICENSE" }
+keywords = ["pydantic", "discriminator", "polymorphism"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python",
+]
+
+# Optional dependencies
+[project.optional-dependencies]
+dev = ["black", "flake8", "pytest", "pytest-cov", "build", "deepdiff"]
+
+[project.urls]
+Repository = "https://github.com/lucabonfiglioli/pydantic-discriminator"

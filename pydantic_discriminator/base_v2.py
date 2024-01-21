@@ -1,7 +1,6 @@
 import warnings
 from collections.abc import MutableMapping
-from re import S
-from typing import Any, Mapping, TypeVar
+from typing import Any, TypeVar
 
 from pydantic import BaseModel, Field, model_validator
 from pydantic._internal._model_construction import ModelMetaclass

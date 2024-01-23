@@ -4,7 +4,7 @@ Welcome to pydantic-discriminator! This is a small utility library that adds sup
 discriminator-based polymorphism to [pydantic](https://pydantic-docs.helpmanual.io/).
 
 > [!CAUTION]
-> This library is **cursed** 💀 and was **condemned by the old ones**. I am trying to make it as safe as possible, but integrating this functionality into pydantic as an external library can be **very hacky** expecially after release 2. I warned you, proceed at your own risk.
+> This library is **cursed** 💀 and was **condemned by the old ones**. I am trying to make it as safe as possible, but integrating this functionality into pydantic as an external library can be **very hacky** especially after release 2. I warned you, proceed at your own risk.
 
 > [!NOTE]
 > Currently tested with 100% test coverage on every possible combination of:

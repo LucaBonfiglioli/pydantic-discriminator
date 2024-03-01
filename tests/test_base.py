@@ -76,6 +76,23 @@ class Penguin(Bird, discriminator="penguin"):
     fatness: float
 
 
+class AnotherAnimal(DiscriminatedBaseModel):
+    name: str
+    owner: str
+
+
+class AnotherCat(AnotherAnimal, discriminator="cat"):
+    color: str
+    meow_pitch: float
+    purrosity: float
+
+
+class AnotherDog(AnotherAnimal, discriminator="dog"):
+    color: str
+    bark_pitch: float
+    size: float
+
+
 @pytest.mark.parametrize(
     ["code", "dict_data"],
     [
@@ -398,6 +415,71 @@ expected = Client(
                         },
                     ),
                 ]
+            },
+        ],
+        [
+            """
+class Client(BaseModel):
+    animal: Animal
+    another_animal: AnotherAnimal
+    animal_dict: dict[str, Animal]
+    another_animal_dict: dict[str, AnotherAnimal]
+
+expected = Client(
+    animal=Snake(name="Slither", age=1, length=1.2, killcount=0),
+    another_animal=AnotherDog(name="Fido", owner="Bob", color="brown", bark_pitch=0.4, size=0.8),
+    animal_dict={
+        "snake": Snake(name="Slither", age=1, length=1.2, killcount=0),
+        "dog": Dog(name="Fido", age=3, color="brown", bark_pitch=0.4, size=0.8),
+    },
+    another_animal_dict={
+        "dog": AnotherDog(name="Fido", owner="Bob", color="brown", bark_pitch=0.4, size=0.8),
+    },
+)
+            """,
+            {
+                "animal": {
+                    "type": "snake",
+                    "name": "Slither",
+                    "age": 1,
+                    "length": 1.2,
+                    "killcount": 0,
+                },
+                "another_animal": {
+                    "type": "dog",
+                    "name": "Fido",
+                    "owner": "Bob",
+                    "color": "brown",
+                    "bark_pitch": 0.4,
+                    "size": 0.8,
+                },
+                "animal_dict": {
+                    "snake": {
+                        "type": "snake",
+                        "name": "Slither",
+                        "age": 1,
+                        "length": 1.2,
+                        "killcount": 0,
+                    },
+                    "dog": {
+                        "type": "dog",
+                        "name": "Fido",
+                        "age": 3,
+                        "color": "brown",
+                        "bark_pitch": 0.4,
+                        "size": 0.8,
+                    },
+                },
+                "another_animal_dict": {
+                    "dog": {
+                        "type": "dog",
+                        "name": "Fido",
+                        "owner": "Bob",
+                        "color": "brown",
+                        "bark_pitch": 0.4,
+                        "size": 0.8,
+                    },
+                },
             },
         ],
     ],
